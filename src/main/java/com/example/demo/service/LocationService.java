@@ -45,11 +45,17 @@ public class LocationService {
 
                 Document document = Jsoup.parse(description);
 
+                /* Fetching name element from description */
                 Element nameElement = document.select(NAME_ELEMENT).get(0);
                 String name = nameElement.nextElementSibling().ownText();
 
+                logger.info("Centre name {}", name);
+
+                /* Fetching photo url element from description */
                 Element photoUrlElement = document.select(PHOTO_ELEMENT).get(0);
                 String photoUrl = photoUrlElement.nextElementSibling().ownText();
+
+                logger.info("Centre photo url {}", photoUrl);
 
                 locationRepository.save(new HawkerCentre(feature.getProperties().getName(),
                         name,

@@ -22,12 +22,20 @@ public class LocationController {
     @Autowired
     private LocationService locationService;
 
+    /**
+     * The method fetches nearest hawker centres depending on
+     * the latitude and longitude provided .
+     */
     @GetMapping(value = "/fetchCentres")
     public List<HawkerCentreDTO> fetchCentres(@RequestParam Double latitude, @RequestParam Double longitude) {
         logger.info("fetchCentres endpoint called");
         return locationService.fetchCentres(latitude, longitude);
     }
 
+    /**
+     * The method reads the hawker centre json file
+     * extracts relevant parameters and saves into database .
+     */
     @GetMapping(value = "/addCentres")
     public void addCentres() {
         try {
